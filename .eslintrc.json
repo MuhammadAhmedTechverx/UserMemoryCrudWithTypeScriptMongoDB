@@ -1,0 +1,42 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module"
+    },
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": [
+        "prettier"
+    ],
+    "rules": {
+    "eqeqeq": "warn",
+    "strict": "off",
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "no-duplicate-imports": "error"
+
+},
+    // Overrides are helpful when project have both .js and .ts files
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"], // Your TypeScript files extension
+
+            // As mentioned in the comments, you should extend TypeScript plugins here,
+            // instead of extending them outside the `overrides`.
+            // If you don't want to extend any rules, you don't need an `extends` attribute.
+            "extends": [
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-function-return-type": "error",
+                "@typescript-eslint/no-floating-promises": "error"
+              },
+
+            "parserOptions": {
+                "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+            }
+        }
+    ]
+}
+
